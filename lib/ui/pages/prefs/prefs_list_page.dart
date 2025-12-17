@@ -42,7 +42,7 @@ class _PrefsListPageState extends State<PrefsListPage> {
         title: const Text('Prefs List Page'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.storage_rounded),
+            icon: const Icon(Icons.cloud),
             onPressed: () {
               Navigator.pushNamedAndRemoveUntil(
                 context,
@@ -57,7 +57,7 @@ class _PrefsListPageState extends State<PrefsListPage> {
         bloc: _cubit,
         builder: (context, items) {
           if (items.isEmpty) {
-            return const Center(child: Text('No items'));
+            return const Center(child: Text('No hay items guardados.'));
           }
           return Padding(
             padding: EdgeInsets.all(16),

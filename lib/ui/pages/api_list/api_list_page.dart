@@ -6,7 +6,7 @@ import '../../../utils/form_utils.dart';
 import '../../components/input_field.dart';
 import '../../layouts/loading/loading_cubit.dart';
 import '../prefs/prefs_list_page.dart';
-import 'api_list_cubit.dart';
+import 'cubit/api_list_cubit.dart';
 
 class ApiListPage extends StatefulWidget {
   static String name = '/api-list';
@@ -25,7 +25,8 @@ class _ApiListPageState extends State<ApiListPage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (!_initialized) {
-      _cubit = ApiListCubit(context.read<LoadingCubit>())..fetchItems();
+      _cubit = ApiListCubit(context, context.read<LoadingCubit>())
+        ..fetchItems();
       _initialized = true;
     }
   }
@@ -58,7 +59,7 @@ class _ApiListPageState extends State<ApiListPage> {
         bloc: _cubit,
         builder: (context, items) {
           if (items.isEmpty) {
-            return const Center(child: Text('No items'));
+            return const Center(child: Text('No hay items descargados.'));
           }
           return Padding(
             padding: EdgeInsets.all(16),

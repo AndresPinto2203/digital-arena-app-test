@@ -46,7 +46,7 @@ class InputField extends StatelessWidget {
           : Theme.of(context).textTheme.bodyMedium,
       keyboardType: keyboardType,
       obscureText: obscureText,
-      cursorColor: Colors.white,
+      cursorColor: Colors.blue,
       validator: validator,
       inputFormatters: inputFormatters,
       decoration: InputDecoration(

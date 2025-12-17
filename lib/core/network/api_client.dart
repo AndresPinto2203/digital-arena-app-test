@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 enum ApiErrorKind { network, http, unauthorized, parse, unknown }
 
@@ -67,7 +68,15 @@ class ApiClient {
     if (error is SocketException || error is TimeoutException) {
       return ApiException(
         kind: ApiErrorKind.network,
-        message: 'Network error: ${error.toString()}',
+        message: 'Ha ocurrido un error de red, por favor intente nuevamente.',
+        url: url,
+      );
+    }
+
+    if (error is ClientException) {
+      return ApiException(
+        kind: ApiErrorKind.network,
+        message: 'Ha ocurrido un error de cliente HTTP.',
         url: url,
       );
     }

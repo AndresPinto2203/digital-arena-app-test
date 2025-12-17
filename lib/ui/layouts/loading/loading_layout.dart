@@ -18,7 +18,7 @@ class LoadingLayout extends StatelessWidget {
             width: double.infinity,
             alignment: Alignment.center,
             color: const Color(0x80000000),
-            child: const CircularProgressIndicator(color: Colors.white),
+            child: const CircularProgressIndicator(color: Colors.blue),
           ),
         );
       },

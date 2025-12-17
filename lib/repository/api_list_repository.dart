@@ -17,15 +17,15 @@ class ApiListRepository {
                 .map((itemJson) => ItemModel.fromJson(itemJson))
                 .toList();
             return items;
-          } on FormatException catch (e) {
+          } on FormatException {
             throw ApiException(
               kind: ApiErrorKind.parse,
-              message: 'Error de parseo de datos: $e',
+              message: 'Error de parseo de datos',
             );
           } catch (e) {
             throw ApiException(
               kind: ApiErrorKind.unknown,
-              message: 'Error al parsear items: $e',
+              message: 'Error al parsear items',
             );
           }
         })
@@ -35,7 +35,7 @@ class ApiListRepository {
           } else {
             throw ApiException(
               kind: ApiErrorKind.unknown,
-              message: 'Error desconocido al obtener items: $error',
+              message: 'Error desconocido al obtener items',
             );
           }
         });

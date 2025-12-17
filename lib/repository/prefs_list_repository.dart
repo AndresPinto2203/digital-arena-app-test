@@ -39,18 +39,28 @@ class PrefsListRepository {
     });
   }
 
-  Future<int> insertPref(ItemModel item) async {
-    try {
-      var algo = await _dbClient.insertItem(
-        item.id,
-        item.storeName,
-        item.name,
-        item.description,
+  Future<ItemModel?> getPrefByCloudId(int id) {
+    return _dbClient.getItemByCloudId(id).then((itemData) {
+      if (itemData == null) return null;
+      return ItemModel(
+        id: itemData.cloudId,
+        storeId: itemData.id,
+        storeName: itemData.storeName,
+        name: itemData.name,
+        description: itemData.description,
+        createdAt: itemData.createdAt,
+        updatedAt: itemData.updatedAt,
       );
-      return algo;
-    } catch (e) {
-      return 0;
-    }
+    });
+  }
+
+  Future<int> insertPref(ItemModel item) {
+    return _dbClient.insertItem(
+      item.id,
+      item.storeName,
+      item.name,
+      item.description,
+    );
   }
 
   Future<int> deletePrefById(int id) {

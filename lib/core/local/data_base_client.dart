@@ -35,6 +35,10 @@ class DataBaseClient {
     _database.itemsTable,
   )..where((t) => t.id.equals(id))).getSingleOrNull();
 
+  Future<ItemsTableData?> getItemByCloudId(int cloudId) => (_database.select(
+    _database.itemsTable,
+  )..where((t) => t.cloudId.equals(cloudId))).getSingleOrNull();
+
   Future<int> deleteItemById(int id) => (_database.delete(
     _database.itemsTable,
   )..where((t) => t.id.equals(id))).go();
